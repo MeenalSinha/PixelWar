@@ -1,0 +1,290 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── PixelWar Design Tokens ──────────────────────────────────────────────── */
+:root {
+  --pw-green:       #4caf50;
+  --pw-green-dark:  #388e3c;
+  --pw-green-deep:  #1b5e20;
+  --pw-navy:        #0d2b27;
+  --pw-navy-mid:    #14533c;
+  --pw-sky:         #87ceeb;
+  --pw-sky-dark:    #5ba3c9;
+  --pw-cream:       #fef9e7;
+  --pw-gold:        #facc15;
+  --pw-gold-dark:   #eab308;
+  --pw-yellow:      #f3c42e;
+  --pw-red:         #ef4444;
+  --pw-purple:      #7c3aed;
+  --pw-teal:        #0d9488;
+  --pw-border:      #191c1e;
+}
+
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+html, body {
+  font-family: 'Press Start 2P', monospace;
+  background-color: var(--pw-cream);
+  color: var(--pw-border);
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* ─── Pixel Art Utilities ───────────────────────────────────────────────────── */
+.pixel-border       { border: 4px solid var(--pw-border); }
+.pixel-border-2     { border: 2px solid var(--pw-border); }
+.pixel-border-sm    { border: 2px solid var(--pw-border); }
+.pixel-shadow       { box-shadow: 4px 4px 0 0 var(--pw-border); }
+.pixel-shadow-sm    { box-shadow: 2px 2px 0 0 var(--pw-border); }
+.pixel-shadow-gold  { box-shadow: 4px 4px 0 0 var(--pw-gold-dark); }
+.pixel-shadow-inset { box-shadow: inset 4px 4px 0 0 rgba(0,0,0,0.25); }
+
+.pixel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', monospace;
+  border: 4px solid var(--pw-border);
+  box-shadow: 4px 4px 0 0 var(--pw-border);
+  cursor: pointer;
+  transition: transform 80ms, box-shadow 80ms;
+  user-select: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.pixel-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+.pixel-btn:hover { filter: brightness(1.08); }
+
+.pixel-btn-gold  { background: var(--pw-gold); color: var(--pw-border); }
+.pixel-btn-green { background: var(--pw-green); color: white; }
+.pixel-btn-red   { background: var(--pw-red); color: white; }
+.pixel-btn-navy  { background: var(--pw-navy); color: white; }
+.pixel-btn-sky   { background: var(--pw-sky); color: var(--pw-border); }
+
+/* ─── Typography ────────────────────────────────────────────────────────────── */
+.pixel-font { font-family: 'Press Start 2P', monospace; }
+
+.text-hero    { font-size: clamp(40px, 7vw, 80px); line-height: 1.1; }
+.text-h1      { font-size: clamp(20px, 3vw, 32px); }
+.text-h2      { font-size: clamp(16px, 2.5vw, 24px); }
+.text-h3      { font-size: 16px; }
+.text-base-px { font-size: 12px; line-height: 1.6; }
+.text-sm-px   { font-size: 10px; line-height: 1.5; }
+.text-xs-px   { font-size: 8px; line-height: 1.4; }
+.text-xxs     { font-size: 6px; }
+
+/* ─── Color Utility Classes ─────────────────────────────────────────────────── */
+.bg-pw-green       { background-color: var(--pw-green); }
+.bg-pw-green-dark  { background-color: var(--pw-green-dark); }
+.bg-pw-green-deep  { background-color: var(--pw-green-deep); }
+.bg-pw-navy        { background-color: var(--pw-navy); }
+.bg-pw-navy-mid    { background-color: var(--pw-navy-mid); }
+.bg-pw-sky         { background-color: var(--pw-sky); }
+.bg-pw-cream       { background-color: var(--pw-cream); }
+.bg-pw-gold        { background-color: var(--pw-gold); }
+.bg-pw-yellow      { background-color: var(--pw-yellow); }
+.bg-pw-red         { background-color: var(--pw-red); }
+
+.text-pw-green  { color: var(--pw-green); }
+.text-pw-navy   { color: var(--pw-navy); }
+.text-pw-gold   { color: var(--pw-gold); }
+.text-pw-sky    { color: var(--pw-sky); }
+.text-pw-cream  { color: var(--pw-cream); }
+.text-pw-red    { color: var(--pw-red); }
+.text-pw-yellow { color: var(--pw-yellow); }
+
+.border-pw-green  { border-color: var(--pw-green); }
+.border-pw-navy   { border-color: var(--pw-navy); }
+.border-pw-gold   { border-color: var(--pw-gold); }
+
+/* ─── Cards ─────────────────────────────────────────────────────────────────── */
+.pw-card {
+  background: white;
+  border: 4px solid var(--pw-border);
+  box-shadow: 4px 4px 0 0 var(--pw-border);
+}
+.pw-card-header {
+  background: #d8f0ec;
+  border-bottom: 4px solid var(--pw-border);
+  padding: 12px 16px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--pw-navy);
+}
+.pw-card-green-header {
+  background: var(--pw-green);
+  color: white;
+  border-bottom: 4px solid var(--pw-border);
+  padding: 12px 16px;
+  font-size: 10px;
+}
+.pw-card-navy-header {
+  background: var(--pw-navy);
+  color: var(--pw-gold);
+  border-bottom: 4px solid var(--pw-border);
+  padding: 12px 16px;
+  font-size: 10px;
+}
+
+/* ─── Progress bars ─────────────────────────────────────────────────────────── */
+.pw-progress-track {
+  width: 100%;
+  height: 10px;
+  background: #e0e0e0;
+  border: 2px solid var(--pw-border);
+  position: relative;
+  overflow: hidden;
+}
+.pw-progress-fill {
+  height: 100%;
+  background: var(--pw-gold);
+  border-right: 2px solid var(--pw-border);
+  transition: width 0.4s ease;
+}
+.pw-progress-fill-green { background: var(--pw-green); }
+.pw-progress-fill-blue  { background: #3b82f6; }
+.pw-progress-fill-red   { background: var(--pw-red); }
+
+/* ─── Animations ────────────────────────────────────────────────────────────── */
+@keyframes pixel-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes pixel-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+@keyframes pixel-blink {
+  0%, 100% { opacity: 1; }
+  49%       { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(250, 204, 21, 0.4); }
+  50%       { box-shadow: 0 0 20px 6px rgba(250, 204, 21, 0.8); }
+}
+
+.animate-pixel-float   { animation: pixel-float 3s ease-in-out infinite; }
+.animate-pixel-pulse   { animation: pixel-pulse 2s ease-in-out infinite; }
+.animate-pixel-blink   { animation: pixel-blink 1s step-end infinite; }
+.animate-marquee       { animation: marquee 20s linear infinite; }
+.animate-count-up      { animation: count-up 0.5s ease forwards; }
+.animate-slide-right   { animation: slide-in-right 0.3s ease; }
+.animate-glow          { animation: glow-pulse 2s ease-in-out infinite; }
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--pw-cream); }
+::-webkit-scrollbar-thumb { background: var(--pw-green); border: 2px solid var(--pw-border); }
+
+/* ─── Accessibility ─────────────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+.skip-link:focus {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 9999;
+  background: var(--pw-gold);
+  color: var(--pw-border);
+  padding: 8px 16px;
+  border: 4px solid var(--pw-border);
+}
+
+/* ─── Tooltip ────────────────────────────────────────────────────────────────── */
+.pw-tooltip {
+  position: relative;
+}
+.pw-tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--pw-navy);
+  color: white;
+  font-size: 8px;
+  padding: 4px 8px;
+  border: 2px solid var(--pw-border);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 100;
+}
+.pw-tooltip:hover::after { opacity: 1; }
+
+/* ─── Input ──────────────────────────────────────────────────────────────────── */
+.pw-input {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  border: 4px solid var(--pw-border);
+  background: white;
+  padding: 12px 16px;
+  outline: none;
+  width: 100%;
+}
+.pw-input:focus {
+  box-shadow: 0 0 0 3px var(--pw-gold);
+}
+
+/* ─── Badge ──────────────────────────────────────────────────────────────────── */
+.pw-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  padding: 3px 6px;
+  border: 2px solid var(--pw-border);
+  font-family: 'Press Start 2P', monospace;
+  text-transform: uppercase;
+}
+.pw-badge-red    { background: var(--pw-red); color: white; }
+.pw-badge-gold   { background: var(--pw-gold); color: var(--pw-border); }
+.pw-badge-green  { background: var(--pw-green); color: white; }
+.pw-badge-navy   { background: var(--pw-navy); color: white; }
+
+/* ─── Notification dot ────────────────────────────────────────────────────────── */
+.notif-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 10px;
+  height: 10px;
+  background: var(--pw-red);
+  border: 2px solid var(--pw-border);
+  border-radius: 50%;
+  animation: pixel-pulse 1.5s ease-in-out infinite;
+}
+
+/* ─── Canvas cursor ───────────────────────────────────────────────────────────── */
+canvas.cursor-crosshair { cursor: crosshair; }
+canvas.cursor-grab      { cursor: grab; }
+canvas.cursor-grab:active { cursor: grabbing; }

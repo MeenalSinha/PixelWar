@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PIXELWAR SOVEREIGN CANVAS | DASHBOARD</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@800;900&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001f29",
+                        "on-tertiary-fixed-variant": "#494900",
+                        "primary-fixed": "#baeaff",
+                        "on-tertiary-container": "#545400",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#626200",
+                        "surface-bright": "#f7f9fc",
+                        "tertiary-container": "#cbcb00",
+                        "surface-variant": "#e0e3e5",
+                        "inverse-primary": "#89d0ed",
+                        "surface-container": "#eceef0",
+                        "on-secondary-fixed": "#161e00",
+                        "background": "#f7f9fc",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#bfc8cd",
+                        "primary-fixed-dim": "#89d0ed",
+                        "secondary-fixed": "#c3f400",
+                        "primary-container": "#87ceeb",
+                        "inverse-surface": "#2d3133",
+                        "on-surface": "#191c1e",
+                        "on-primary-container": "#005870",
+                        "secondary": "#506600",
+                        "outline": "#6f787d",
+                        "tertiary-fixed-dim": "#cdcd00",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-dim": "#d8dadc",
+                        "on-background": "#191c1e",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary-fixed-variant": "#004d62",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#abd600",
+                        "on-surface-variant": "#3f484c",
+                        "on-error": "#ffffff",
+                        "primary": "#0c6780",
+                        "surface-tint": "#0c6780",
+                        "on-tertiary-fixed": "#1d1d00",
+                        "on-secondary-fixed-variant": "#3c4d00",
+                        "tertiary-fixed": "#eaea00",
+                        "surface": "#f7f9fc",
+                        "on-secondary-container": "#546b00",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#c1f100",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin": "32px",
+                        "md": "24px",
+                        "gutter": "24px",
+                        "sm": "16px",
+                        "border-weight": "4px",
+                        "xl": "64px",
+                        "base": "4px",
+                        "lg": "40px",
+                        "xs": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Anybody"],
+                        "label-bold": ["Space Mono"],
+                        "headline-lg": ["Anybody"],
+                        "label-sm": ["Space Mono"],
+                        "headline-xl": ["Anybody"],
+                        "body-lg": ["Anybody"],
+                        "body-md": ["Anybody"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "label-bold": ["14px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "label-sm": ["12px", {"lineHeight": "1.0", "fontWeight": "400"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .neo-shadow { shadow-[4px_4px_0px_0px_rgba(25,28,30,1)]; }
+        .pixel-border { border: 4px solid #191c1e; }
+        .active-nav-shadow { box-shadow: 4px 4px 0px 0px rgba(25, 28, 30, 1); }
+        .btn-press:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px 0px rgba(25,28,30,1); }
+        
+        @keyframes pixel-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-pixel-float { animation: pixel-float 3s ease-in-out infinite; }
+
+        .dashed-border { border: 2px dashed #6f787d; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Sidebar Navigation -->
+<aside class="fixed h-screen w-64 left-0 border-r-4 border-on-surface bg-secondary-container flex flex-col p-sm gap-xs z-50">
+<div class="p-4 flex flex-col items-center gap-2 mb-4">
+<img alt="Logo" class="w-20 h-20 animate-pixel-float" src="https://lh3.googleusercontent.com/aida/AP1WRLvEAMnsc75MAM7QV-e2Nr8AReg8zeivwevq7b49j8gTtawi2UF7vDf7z-D9yyLku4oEjh_IZGvvoNWv7gQgh_iYYozC_UJh_LP5iqX0ZnlKZamKlqSBwZnIntWk3IongYVhqZVcRanPB5MwPxEWTqtDuezKSOU5fdOMZmhqyJ-GsqkRVJJxvkd37hAIIMd2ObIrXuiFaR2du0ZsC8HaL6AoZe8l_jSY-H28zHN-wmriqSsJGSNcC9iRRw"/>
+<div class="text-center">
+<h2 class="font-headline-lg text-headline-lg font-black text-on-secondary-container leading-none">STRATEGY HUB</h2>
+<p class="font-label-sm text-label-sm uppercase mt-1 text-on-secondary-fixed-variant">COMMANDER LEVEL 42</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<!-- Active Tab: DASHBOARD -->
+<a class="flex items-center gap-4 p-4 font-label-bold text-label-bold uppercase bg-tertiary-container text-on-tertiary-container border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(25,28,30,1)] transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span>DASHBOARD</span>
+</a>
+<a class="flex items-center gap-4 p-4 font-label-bold text-label-bold uppercase text-on-secondary-container hover:translate-x-1 hover:bg-tertiary-fixed-dim hover:text-on-tertiary-fixed-variant transition-all" href="#">
+<span class="material-symbols-outlined">swords</span>
+<span>COMMAND</span>
+</a>
+<a class="flex items-center gap-4 p-4 font-label-bold text-label-bold uppercase text-on-secondary-container hover:translate-x-1 hover:bg-tertiary-fixed-dim hover:text-on-tertiary-fixed-variant transition-all" href="#">
+<span class="material-symbols-outlined">database</span>
+<span>RESOURCES</span>
+</a>
+<a class="flex items-center gap-4 p-4 font-label-bold text-label-bold uppercase text-on-secondary-container hover:translate-x-1 hover:bg-tertiary-fixed-dim hover:text-on-tertiary-fixed-variant transition-all" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span>FACTIONS</span>
+</a>
+<a class="flex items-center gap-4 p-4 font-label-bold text-label-bold uppercase text-on-secondary-container hover:translate-x-1 hover:bg-tertiary-fixed-dim hover:text-on-tertiary-fixed-variant transition-all" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span>QUESTS</span>
+</a>
+<a class="flex items-center gap-4 p-4 font-label-bold text-label-bold uppercase text-on-secondary-container hover:translate-x-1 hover:bg-tertiary-fixed-dim hover:text-on-tertiary-fixed-variant transition-all mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>SETTINGS</span>
+</a>
+</nav>
+</aside>
+<main class="ml-64 flex flex-col min-h-screen">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-40 bg-primary-container text-on-primary-container flex justify-between items-center w-full px-margin h-20 border-b-4 border-secondary shadow-[4px_4px_0px_0px_rgba(25,28,30,1)]">
+<div class="flex items-center gap-xs">
+<h1 class="font-headline-lg text-headline-lg font-black uppercase tracking-tighter">PIXELWAR SOVEREIGN CANVAS</h1>
+</div>
+<nav class="hidden md:flex items-center gap-md">
+<a class="font-headline-lg text-[18px] font-black uppercase text-on-secondary-container border-b-4 border-secondary-fixed px-2" href="#">HOME</a>
+<a class="font-headline-lg text-[18px] font-black uppercase text-on-primary-container opacity-80 hover:bg-tertiary-container hover:text-on-tertiary-container transition-all px-2" href="#">MAP</a>
+<a class="font-headline-lg text-[18px] font-black uppercase text-on-primary-container opacity-80 hover:bg-tertiary-container hover:text-on-tertiary-container transition-all px-2" href="#">BUILD</a>
+<a class="font-headline-lg text-[18px] font-black uppercase text-on-primary-container opacity-80 hover:bg-tertiary-container hover:text-on-tertiary-container transition-all px-2" href="#">EMPIRE</a>
+<a class="font-headline-lg text-[18px] font-black uppercase text-on-primary-container opacity-80 hover:bg-tertiary-container hover:text-on-tertiary-container transition-all px-2" href="#">ALLIANCES</a>
+<a class="font-headline-lg text-[18px] font-black uppercase text-on-primary-container opacity-80 hover:bg-tertiary-container hover:text-on-tertiary-container transition-all px-2" href="#">SHOP</a>
+</nav>
+<div class="flex items-center gap-sm bg-surface-container border-4 border-on-surface p-2 neo-shadow">
+<div class="w-10 h-10 border-2 border-on-surface bg-secondary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A pixel-art style character portrait of a medieval commander wearing a blue and yellow helmet, set against a solid dark green background, 8-bit aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6c761iMCAfSf6nWEmYpgI1uYsxKkHeS3XJqrbXGj8lUYQykgPwi-oHIl302m0_D7s7lMFnJrXfa46E61z_ZPiiLl1tP9_Rcob1pQ_1zBS0ikugsbOzrq3LKESUuDEzIfavMC2RKxUpVdhIKZ3R3ejBjrSG7v0UFlfS-8Q7joa9d9Ku8Zh_xaQ3OdmQu4uQvLuPHLArUzJyh_VW83GK0D4b483C4zXzMAqSCKAqC1483QlzuUrGAMUZD9DWW0S8ReI-yNV0tRamRc"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-bold text-on-surface text-[12px]">COMMANDER_V</span>
+<span class="font-label-sm text-secondary font-bold">LVL 42</span>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-margin flex flex-col gap-lg">
+<!-- Hero Section -->
+<section class="relative h-[400px] w-full border-4 border-on-surface bg-primary-fixed overflow-hidden flex items-center justify-center neo-shadow">
+<div class="absolute inset-0 z-0 opacity-40">
+<div class="absolute top-10 left-10 w-24 h-12 bg-white pixel-border"></div>
+<div class="absolute top-24 right-20 w-32 h-16 bg-white pixel-border"></div>
+<div class="absolute bottom-10 left-1/4 w-20 h-10 bg-white pixel-border"></div>
+</div>
+<div class="relative z-10 text-center flex flex-col items-center">
+<h2 class="font-headline-xl text-[80px] text-on-primary-fixed uppercase tracking-tighter drop-shadow-[4px_4px_0px_rgba(193,241,0,1)]">PIXELWAR</h2>
+<p class="font-body-lg text-body-lg text-on-primary-fixed-variant mt-2 max-w-xl">CLAIM YOUR TERRITORY. BUILD YOUR EMPIRE. DOMINATE THE CANVAS.</p>
+<button class="mt-8 px-10 py-5 bg-secondary-container border-4 border-on-surface text-on-secondary-container font-headline-lg text-headline-lg uppercase neo-shadow btn-press hover:bg-tertiary transition-colors">
+                        ENTER THE WORLD
+                    </button>
+</div>
+</section>
+<!-- Stats Bar -->
+<section class="grid grid-cols-5 gap-0 border-4 border-on-surface bg-secondary neo-shadow">
+<div class="p-md text-center border-r-4 border-on-surface">
+<p class="font-label-sm text-secondary-fixed uppercase">Players</p>
+<p class="font-headline-lg text-white">18,543</p>
+</div>
+<div class="p-md text-center border-r-4 border-on-surface">
+<p class="font-label-sm text-secondary-fixed uppercase">Pixels</p>
+<p class="font-headline-lg text-white">6.42B</p>
+</div>
+<div class="p-md text-center border-r-4 border-on-surface">
+<p class="font-label-sm text-secondary-fixed uppercase">Alliances</p>
+<p class="font-headline-lg text-white">312</p>
+</div>
+<div class="p-md text-center border-r-4 border-on-surface">
+<p class="font-label-sm text-secondary-fixed uppercase">Cities</p>
+<p class="font-headline-lg text-white">24,891</p>
+</div>
+<div class="p-md text-center">
+<p class="font-label-sm text-secondary-fixed uppercase">Wars</p>
+<p class="font-headline-lg text-white">47</p>
+</div>
+</section>
+<!-- Map Section -->
+<section class="relative h-[600px] border-4 border-on-surface bg-surface-container overflow-hidden neo-shadow flex">
+<!-- Map Background -->
+<div class="absolute inset-0 bg-[#4e9f3d]" style="background-image: radial-gradient(#3e8e2d 2px, transparent 2px); background-size: 32px 32px;">
+<img class="w-full h-full object-cover opacity-80" data-alt="A top-down view of a vast pixel-art world map with diverse biomes including green forests, blue oceans, white snowy mountains, and grey rocky terrains. Small colorful cities and movement paths are visible on the grid-based landscape." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzvGJS3iZA_hY7T53RiFxWx4Vw8Oip02E3wsUbv0GXl7sAMudmU9rtw9KWBoFgdlkAT7QLdug7DrKiTKv-Wx8A-kqQ2y5SuI7AwyM8OPE7ZyA6VkveFhQ03VafgjEd7CHR1jvHYGbgm2yJVGMlrcKnbaYmyDbSAsV9W9Zl_1vM-DFk7pj68ylu6sKCxdcGbOhe5iOmhlL03aXviLsSlgFpIsaWdr8wNTi6JLYyMsxorD17I57kTVhmIEadV-49s8nWNP-SVVKSWR0"/>
+</div>
+<!-- Floating Controls -->
+<div class="absolute left-sm top-1/2 -translate-y-1/2 flex flex-col gap-2">
+<button class="w-12 h-12 bg-white border-4 border-on-surface flex items-center justify-center btn-press neo-shadow"><span class="material-symbols-outlined">add</span></button>
+<button class="w-12 h-12 bg-white border-4 border-on-surface flex items-center justify-center btn-press neo-shadow"><span class="material-symbols-outlined">remove</span></button>
+<button class="w-12 h-12 bg-white border-4 border-on-surface flex items-center justify-center btn-press neo-shadow"><span class="material-symbols-outlined">my_location</span></button>
+<button class="w-12 h-12 bg-white border-4 border-on-surface flex items-center justify-center btn-press neo-shadow"><span class="material-symbols-outlined">layers</span></button>
+</div>
+<!-- Overlaid Panels -->
+<div class="absolute right-sm top-sm flex flex-col gap-sm w-80">
+<!-- Top Empires -->
+<div class="bg-surface border-4 border-on-surface p-sm neo-shadow">
+<h3 class="font-headline-lg text-[20px] bg-primary text-white p-2 border-b-4 border-on-surface -mx-sm -mt-sm mb-4 uppercase">TOP EMPIRES</h3>
+<ul class="flex flex-col gap-2">
+<li class="flex justify-between items-center border-b-2 border-outline-variant pb-1">
+<span class="font-label-bold">1. IRON_LEGION</span>
+<span class="text-secondary font-bold">1.2M PK</span>
+</li>
+<li class="flex justify-between items-center border-b-2 border-outline-variant pb-1">
+<span class="font-label-bold">2. VOID_WALKERS</span>
+<span class="text-secondary font-bold">942K PK</span>
+</li>
+<li class="flex justify-between items-center border-b-2 border-outline-variant pb-1">
+<span class="font-label-bold">3. GOLD_BLOODS</span>
+<span class="text-secondary font-bold">811K PK</span>
+</li>
+<li class="flex justify-between items-center border-b-2 border-outline-variant pb-1">
+<span class="font-label-bold">4. PIXEL_KINGS</span>
+<span class="text-secondary font-bold">650K PK</span>
+</li>
+<li class="flex justify-between items-center">
+<span class="font-label-bold">5. NEO_GUILD</span>
+<span class="text-secondary font-bold">512K PK</span>
+</li>
+</ul>
+</div>
+<!-- Global Event -->
+<div class="bg-error-container border-4 border-on-surface p-sm neo-shadow">
+<div class="flex items-center gap-2 mb-2 text-on-error-container">
+<span class="material-symbols-outlined">warning</span>
+<h3 class="font-headline-lg text-[20px] uppercase">GLOBAL EVENT</h3>
+</div>
+<p class="font-label-bold text-error mb-2 uppercase">Meteor Shower Incoming</p>
+<div class="bg-white border-2 border-on-surface p-2 text-center">
+<span class="font-headline-lg text-headline-lg tracking-widest" id="countdown">02:15:47</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 4-Column Card Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Your Kingdom -->
+<article class="bg-surface border-4 border-on-surface neo-shadow flex flex-col">
+<header class="bg-primary-container p-4 border-b-4 border-on-surface">
+<h3 class="font-headline-lg text-[20px] uppercase text-on-primary-container">Your Kingdom</h3>
+</header>
+<div class="p-4 flex-grow flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary flex items-center justify-center pixel-border text-white">
+<span class="material-symbols-outlined">fort</span>
+</div>
+<div>
+<p class="font-headline-lg text-[18px]">Verdantia</p>
+<p class="font-label-sm uppercase text-outline">Level 42 Citadel</p>
+</div>
+</div>
+<div class="w-full h-6 bg-surface-variant border-2 border-on-surface relative">
+<div class="h-full bg-secondary-fixed border-r-2 border-on-surface" style="width: 65%;"></div>
+<span class="absolute inset-0 flex items-center justify-center font-label-bold text-[10px]">XP: 14,200 / 22,000</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-center">
+<div class="bg-surface-container p-2 border-2 border-on-surface">
+<p class="text-[10px] uppercase">Health</p>
+<p class="font-label-bold">100%</p>
+</div>
+<div class="bg-surface-container p-2 border-2 border-on-surface">
+<p class="text-[10px] uppercase">Defense</p>
+<p class="font-label-bold">8,402</p>
+</div>
+</div>
+<button class="mt-auto w-full py-3 bg-secondary-container border-4 border-on-surface font-label-bold uppercase neo-shadow btn-press">MANAGE</button>
+</div>
+</article>
+<!-- Resources -->
+<article class="bg-surface border-4 border-on-surface neo-shadow flex flex-col">
+<header class="bg-primary-container p-4 border-b-4 border-on-surface">
+<h3 class="font-headline-lg text-[20px] uppercase text-on-primary-container">Resources</h3>
+</header>
+<div class="p-4 flex-grow flex flex-col gap-2">
+<div class="flex justify-between items-center dashed-border p-2">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">forest</span> WOOD</span>
+<span class="font-label-bold text-secondary">+1.2k/h</span>
+</div>
+<div class="flex justify-between items-center dashed-border p-2">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">foundation</span> STONE</span>
+<span class="font-label-bold text-secondary">+840/h</span>
+</div>
+<div class="flex justify-between items-center dashed-border p-2">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">monetization_on</span> GOLD</span>
+<span class="font-label-bold text-secondary">+2.5k/h</span>
+</div>
+<div class="flex justify-between items-center dashed-border p-2">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">water_drop</span> OIL</span>
+<span class="font-label-bold text-secondary">+150/h</span>
+</div>
+<div class="flex justify-between items-center dashed-border p-2">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">bolt</span> ENERGY</span>
+<span class="font-label-bold text-secondary">+400/h</span>
+</div>
+<div class="flex justify-between items-center dashed-border p-2">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">restaurant</span> FOOD</span>
+<span class="font-label-bold text-secondary">+3.1k/h</span>
+</div>
+<button class="mt-4 w-full py-3 bg-secondary-container border-4 border-on-surface font-label-bold uppercase neo-shadow btn-press">MARKET</button>
+</div>
+</article>
+<!-- Research -->
+<article class="bg-surface border-4 border-on-surface neo-shadow flex flex-col">
+<header class="bg-primary-container p-4 border-b-4 border-on-surface">
+<h3 class="font-headline-lg text-[20px] uppercase text-on-primary-container">Research</h3>
+</header>
+<div class="p-4 flex-grow flex flex-col gap-4">
+<div class="bg-tertiary-container p-2 text-on-tertiary-container border-2 border-on-surface text-center">
+<p class="font-label-bold uppercase">Industrial Age</p>
+<p class="text-[12px]">LVL 3 TECHNOLOGY</p>
+</div>
+<div class="flex flex-col gap-2">
+<p class="font-label-sm uppercase">Active Project: Steam Engine</p>
+<div class="w-full h-8 bg-surface-variant border-2 border-on-surface relative">
+<div class="h-full bg-tertiary border-r-2 border-on-surface" style="width: 82%;"></div>
+<span class="absolute inset-0 flex items-center justify-center font-label-bold text-white">82%</span>
+</div>
+</div>
+<ul class="text-[12px] flex flex-col gap-1">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">check_circle</span> UNLOCKED: Basic Alloys</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">check_circle</span> UNLOCKED: Trade Routes</li>
+<li class="flex items-center gap-2 text-outline"><span class="material-symbols-outlined text-[14px]">lock</span> NEXT: Advanced Circuitry</li>
+</ul>
+<button class="mt-auto w-full py-3 bg-secondary-container border-4 border-on-surface font-label-bold uppercase neo-shadow btn-press">VIEW</button>
+</div>
+</article>
+<!-- Missions -->
+<article class="bg-surface border-4 border-on-surface neo-shadow flex flex-col">
+<header class="bg-primary-container p-4 border-b-4 border-on-surface">
+<h3 class="font-headline-lg text-[20px] uppercase text-on-primary-container">Missions</h3>
+</header>
+<div class="p-4 flex-grow flex flex-col gap-4">
+<div class="flex flex-col gap-3">
+<div class="flex flex-col gap-1">
+<p class="font-label-bold text-[12px] uppercase">Defeat 10 Barbarians (8/10)</p>
+<div class="w-full h-2 bg-surface-variant border-2 border-on-surface"><div class="h-full bg-secondary" style="width: 80%;"></div></div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="font-label-bold text-[12px] uppercase">Expand Borders (1/1)</p>
+<div class="w-full h-2 bg-surface-variant border-2 border-on-surface"><div class="h-full bg-secondary" style="width: 100%;"></div></div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="font-label-bold text-[12px] uppercase">Research Alloys (0/1)</p>
+<div class="w-full h-2 bg-surface-variant border-2 border-on-surface"><div class="h-full bg-secondary" style="width: 0%;"></div></div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="font-label-bold text-[12px] uppercase">Form Alliance (0/1)</p>
+<div class="w-full h-2 bg-surface-variant border-2 border-on-surface"><div class="h-full bg-secondary" style="width: 0%;"></div></div>
+</div>
+</div>
+<button class="mt-auto w-full py-3 bg-secondary-container border-4 border-on-surface font-label-bold uppercase neo-shadow btn-press">VIEW ALL</button>
+</div>
+</article>
+</section>
+<!-- World News Feed -->
+<section class="border-4 border-on-surface bg-secondary p-md neo-shadow overflow-hidden">
+<div class="flex justify-between items-center mb-md border-b-4 border-on-surface pb-4">
+<h2 class="font-headline-lg text-white uppercase flex items-center gap-2">
+<span class="material-symbols-outlined">newspaper</span> WORLD NEWS FEED
+                    </h2>
+<button class="px-6 py-2 bg-secondary-fixed border-4 border-on-surface text-on-secondary-fixed font-label-bold uppercase neo-shadow btn-press">VIEW ALL NEWS</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 flex-shrink-0 bg-white border-2 border-on-surface overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A small pixel-art headshot of a female character with pink hair and a futuristic scanner over one eye, looking slightly to the side, set against a light blue background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDICIwk_I2yymR594TsuQT-qNte1cOEHo8_WNZ4fMngHbf1ceVMAMvuZHDqpxUrzjldQZALBxDjeDE7Dbs6oNJ4QkJ42ci5WmDyACkV0I1pFm3sF0iTgwYnTIkAxArSV801t6tMd7KHfO58Zi04VPLeKU0p7mIHu1R-LtpaWq3gJkW6Epa_314YW_FZ0Wf26thsVRXzoYwPI_RFtjgzOGwRbdE59HDmhQO84_-f1tB_--KFn9NGIHPE3SqqdlZocxhQYv6U6fr0SZg"/>
+</div>
+<div>
+<p class="font-label-bold text-secondary-fixed uppercase">VOID_WALKER_7</p>
+<p class="text-[12px] text-white">"The northern border is falling to the Iron Legion. We need reinforcements now!"</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 flex-shrink-0 bg-white border-2 border-on-surface overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A small pixel-art headshot of a bearded male character wearing a golden crown and a red cape collar, regal and stern expression, set against a dark purple background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADxMHjYW4ESQtTLkCy28RV9hZz2IqsSKoY18NgQGtwktHIUjXUejHY5TE0BrDxaDMhC7bBVcu1xdknepUCjWP41-lm9Uhq4qXJTLsr1NnjiUobiB4CR2NPGzetjb87vm3Uhc39eGAnWj1vbeFIEIQxtHOm6O0AOV8gXzEHxQyPYV8kSLuMuNuwDuHpAQpQJ6bHkt9MndL-ZkW6Lfh-DBaDNlZCU3KBDNBajFTUFTlOWlsM5JN5EuDEyLRZ_9NR8EnVcf1Ot0XamvU"/>
+</div>
+<div>
+<p class="font-label-bold text-secondary-fixed uppercase">KING_Midas</p>
+<p class="text-[12px] text-white">"New trade route established between Oasis and Ironforge. Gold rates expected to rise."</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 flex-shrink-0 bg-white border-2 border-on-surface overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A small pixel-art headshot of a mechanical robot unit with a glowing blue visor and metallic plating, sleek and technical, set against a dark grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_3a1-hs8qJIHnSHUB8hN8V2hRC3wcpwnhvYuU21gEZaqPKaCju1NziR5OcsGIRPgrC8C9kvxAvxPs5x_8b60vgtDsL-N7vR8UDnxggoz6_k1PPq-DS743vWa5fSg4MUFl8DhngvQDPPwwj1Sq_7EvhbXqk2QaqGByPW7ak9AQ49mYi6g7uMOzoO_wrfLSbzUhynVO-t0l80IrA9W6HVdgXCgstIk78lCrNxh7TLRZos5yZ_t04_X0volptHlkEN-X2YDd6eT8-hQ"/>
+</div>
+<div>
+<p class="font-label-bold text-secondary-fixed uppercase">UNIT_404</p>
+<p class="text-[12px] text-white">"Resource yield in Sector 7-G has increased by 15% following technological upgrades."</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 flex-shrink-0 bg-white border-2 border-on-surface overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A small pixel-art headshot of a hooded figure with glowing green eyes and a mysterious atmosphere, dark fantasy aesthetic, set against a deep black background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOfeCs3DknanvANPI0H72QNcmXKMHiRmVqTVqcRZ1QsKDmUVnI1yUnf5OpA8H7cC-MOe1MHNSd092hLtEmEtC4LIv5OCCGDKaLEuQ6qkk4rHbWJPe6iIMQZM4x0xbGvzOKTDffeWLJyX1ah-vApGQ2R1WJhYbVPnkwxkZGtCHXXGgxVKalesTUgDnrmXK2o9MJUVwUrWtGyy_55WqcflvYfPkpX3XUp8xIRO-sQAza0i2jHO5bB6NawYP6ywzClB5vd0QSuAWSE10"/>
+</div>
+<div>
+<p class="font-label-bold text-secondary-fixed uppercase">SHADOW_NET</p>
+<p class="text-[12px] text-white">"A mysterious meteor fragment has been spotted in the Dead Lands. First one there wins."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Create Your Legacy -->
+<section class="h-[300px] border-4 border-on-surface relative overflow-hidden neo-shadow group">
+<div class="absolute inset-0 bg-primary-fixed">
+<img class="w-full h-full object-cover opacity-60" data-alt="A vibrant pixel-art landscape illustration featuring a bright blue sky with blocky white clouds and a rolling green grassland. Two armored knights, one in silver and one in gold, stand facing each other in a heroic pose, 8-bit game style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmk7YLeS1loQClK1hFm5lZNDNNGwFEBu1-4N4Xw-WsRdXRaJAxWBvMckGu_QJWMpFOks8kt1hkCYvNsgNihs6QdKH__BTC12WuFFZgsMRSiedIXLBwZeyG441_GBatS1BpuQyM-YJeao1KNLDR6v88CNZ7htUO91ia_omj7RqBTVX0X8TI_2RwpJe0zWRVxYRpSQmx-s898y3bjoRzZEuOpYNzwtsNDN1Fc8iGd_P8-n7s2xgnOzum4PFrf6lgXXvRADzgNTdQqmg"/>
+</div>
+<div class="relative h-full flex flex-col items-center justify-center text-center p-md">
+<h2 class="font-headline-xl text-[48px] text-on-primary-fixed uppercase drop-shadow-[4px_4px_0px_rgba(25,28,30,1)]">CREATE YOUR LEGACY</h2>
+<button class="mt-6 px-12 py-4 bg-tertiary-fixed border-4 border-on-surface text-on-tertiary-fixed font-headline-lg uppercase neo-shadow btn-press hover:bg-white transition-all">PLAY NOW</button>
+</div>
+</section>
+<!-- Why Play? -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="p-md bg-white border-4 border-on-surface neo-shadow">
+<div class="w-16 h-16 bg-primary-container border-4 border-on-surface flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[32px]">public</span>
+</div>
+<h4 class="font-headline-lg text-[22px] uppercase mb-2">Persistent World</h4>
+<p class="text-on-surface-variant font-body-md">Your actions leave a permanent mark on the global canvas. Build cities that stand for decades.</p>
+</div>
+<div class="p-md bg-white border-4 border-on-surface neo-shadow">
+<div class="w-16 h-16 bg-secondary-container border-4 border-on-surface flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[32px]">swords</span>
+</div>
+<h4 class="font-headline-lg text-[22px] uppercase mb-2">Real-time Battles</h4>
+<p class="text-on-surface-variant font-body-md">Coordinate with thousands of allies in massive tactical engagements that evolve every minute.</p>
+</div>
+<div class="p-md bg-white border-4 border-on-surface neo-shadow">
+<div class="w-16 h-16 bg-tertiary-container border-4 border-on-surface flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[32px]">construction</span>
+</div>
+<h4 class="font-headline-lg text-[22px] uppercase mb-2">Build &amp; Innovate</h4>
+<p class="text-on-surface-variant font-body-md">A deep technology tree allows you to evolve from the stone age to futuristic digital dominance.</p>
+</div>
+</section>
+<!-- Join the Battle -->
+<section class="bg-tertiary-container border-4 border-on-surface p-xl neo-shadow relative overflow-hidden">
+<!-- Simple wave pattern using CSS -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background: repeating-linear-gradient(45deg, transparent, transparent 20px, #1d1d00 20px, #1d1d00 40px);"></div>
+<div class="relative z-10 flex flex-col items-center gap-md">
+<h2 class="font-headline-xl text-center text-on-tertiary-fixed uppercase">READY TO CONQUER?</h2>
+<p class="font-body-lg text-center text-on-tertiary-fixed-variant max-w-2xl">Join the pre-registration queue and receive the exclusive "Founding Commander" pixel armor set on launch day.</p>
+<div class="flex flex-col md:flex-row gap-4 w-full max-w-lg">
+<input class="flex-grow p-4 border-4 border-on-surface bg-white font-label-bold uppercase focus:ring-0 focus:border-secondary transition-colors" placeholder="ENTER YOUR COMMAND EMAIL" type="email"/>
+<button class="bg-secondary-fixed px-8 py-4 border-4 border-on-surface text-on-secondary-fixed font-headline-lg uppercase neo-shadow btn-press">PRE-REGISTER</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="mt-auto w-full py-lg px-margin flex flex-col md:flex-row justify-between items-center gap-md bg-tertiary-container text-on-tertiary-container border-t-4 border-on-surface">
+<div class="flex flex-col items-center md:items-start gap-2">
+<h2 class="font-headline-lg text-headline-lg font-black text-on-tertiary-container tracking-tighter uppercase">PIXELWAR</h2>
+<p class="font-label-sm text-label-sm uppercase">© 2024 PIXELWAR SOVEREIGN CANVAS. ALL PIXELS RESERVED.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-md">
+<a class="font-label-sm text-label-sm uppercase text-on-tertiary-container hover:underline decoration-4 decoration-primary transition-transform hover:scale-105" href="#">TERMS OF WAR</a>
+<a class="font-label-sm text-label-sm uppercase text-on-tertiary-container hover:underline decoration-4 decoration-primary transition-transform hover:scale-105" href="#">PRIVACY PROTOCOL</a>
+<a class="font-label-sm text-label-sm uppercase text-on-tertiary-container hover:underline decoration-4 decoration-primary transition-transform hover:scale-105" href="#">BATTLE GUIDE</a>
+<a class="font-label-sm text-label-sm uppercase text-on-tertiary-container hover:underline decoration-4 decoration-primary transition-transform hover:scale-105" href="#">SUPPORT</a>
+</nav>
+</footer>
+</main>
+<script>
+        // Micro-interaction for the countdown timer
+        function updateCountdown() {
+            const timer = document.getElementById('countdown');
+            let timeParts = timer.innerText.split(':').map(Number);
+            let totalSeconds = timeParts[0] * 3600 + timeParts[1] * 60 + timeParts[2];
+            
+            if (totalSeconds > 0) {
+                totalSeconds--;
+                const h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
+                const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
+                const s = (totalSeconds % 60).toString().padStart(2, '0');
+                timer.innerText = `${h}:${m}:${s}`;
+            }
+        }
+        setInterval(updateCountdown, 1000);
+
+        // Hover effects on the map empire list
+        document.querySelectorAll('ul.flex-col li').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.classList.add('bg-secondary-fixed/20');
+            });
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('bg-secondary-fixed/20');
+            });
+        });
+    </script>
+</body></html>
